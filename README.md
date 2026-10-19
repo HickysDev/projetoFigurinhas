@@ -2,6 +2,12 @@
 
 App Android que transforma fotos e vídeos em figurinhas do WhatsApp, direto no celular.
 
+## Baixar
+
+**[⬇️ Baixar APK](https://github.com/HickysDev/sticker-app/raw/main/apk/sticker-app.apk)**
+
+Abra o arquivo no celular e permita a instalação de "fontes desconhecidas" quando o Android pedir.
+
 ## Prints
 
 <p>
