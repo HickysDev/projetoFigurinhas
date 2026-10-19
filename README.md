@@ -2,6 +2,13 @@
 
 App Android que transforma fotos e vídeos em figurinhas do WhatsApp, direto no celular.
 
+## Prints
+
+<p>
+  <img src="screenshots/tela-principal.png" alt="Tela principal" width="270">
+  <img src="screenshots/pre-visualizacao.png" alt="Pré-visualização de figurinha animada" width="270">
+</p>
+
 ## Funcionalidades
 
 - **Figurinhas estáticas** a partir de fotos, com tela de recorte antes da conversão.
