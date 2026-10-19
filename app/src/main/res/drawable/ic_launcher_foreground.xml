@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Gatinho com um coração. Canvas 108x108; a área visível fica entre 21 e 87. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Orelhas -->
+    <path
+        android:fillColor="#3A3A3A"
+        android:pathData="M30,52 L33,27 L49,40 Z M70,52 L67,27 L51,40 Z" />
+    <path
+        android:fillColor="#F7A1B5"
+        android:pathData="M34,45 L35.5,32 L44,40 Z M66,45 L64.5,32 L56,40 Z" />
+
+    <!-- Cabeça -->
+    <path
+        android:fillColor="#3A3A3A"
+        android:pathData="M50,36 A23,21 0 1,1 49.99,36 Z" />
+
+    <!-- Olhos -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M42,50 A4,4.5 0 1,1 41.99,50 Z M58,50 A4,4.5 0 1,1 57.99,50 Z" />
+    <path
+        android:fillColor="#3A3A3A"
+        android:pathData="M42,52 A2,2.5 0 1,1 41.99,52 Z M58,52 A2,2.5 0 1,1 57.99,52 Z" />
+
+    <!-- Nariz -->
+    <path
+        android:fillColor="#F7A1B5"
+        android:pathData="M47,61 L53,61 L50,64.5 Z" />
+
+    <!-- Bigodes -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.2"
+        android:strokeLineCap="round"
+        android:pathData="M38,62 L29,60 M38,65 L29,66 M62,62 L71,60 M62,65 L71,66" />
+
+    <!-- Coração -->
+    <path
+        android:fillColor="#E53950"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:pathData="M70,86 C70,86 58,77.5 58,70.5 C58,66.5 61,63.5 64.5,63.5 C67,63.5 69,65 70,67 C71,65 73,63.5 75.5,63.5 C79,63.5 82,66.5 82,70.5 C82,77.5 70,86 70,86 Z" />
+</vector>
