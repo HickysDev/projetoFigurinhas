@@ -72,19 +72,30 @@ object StickerMaker {
             }
             if (bitmaps.isEmpty()) error("Não foi possível extrair quadros do vídeo")
 
-            // Vai reduzindo qualidade e quadros até caber em 500 KB
-            val attempts = listOf(1 to 70, 1 to 50, 1 to 35, 2 to 35, 2 to 20, 3 to 15)
-            for ((index, attempt) in attempts.withIndex()) {
-                val (step, quality) = attempt
-                val frames = bitmaps.filterIndexed { i, _ -> i % step == 0 }
-                    .map { encodeWebp(it, quality) }
-                // Ao pular quadros, limita a duração para o total não passar de 10 s
-                val duration = minOf(frameMs * step, MAX_DURATION_MS / frames.size).toInt()
-                val webp = AnimatedWebpWriter.write(frames, SIZE, SIZE, duration)
-                onProgress(80 + (index + 1) * 20 / attempts.size)
+            // Mantém sempre 10 fps (pular quadros deixa a figurinha travando).
+            // Primeiro reduz a qualidade; se ainda não couber em 500 KB, encurta o clipe.
+            val qualities = listOf(70, 50, 35, 25, 15)
+            for ((index, quality) in qualities.withIndex()) {
+                val frames = bitmaps.map { encodeWebp(it, quality) }
+                onProgress(80 + (index + 1) * 15 / qualities.size)
+                val webp = AnimatedWebpWriter.write(frames, SIZE, SIZE, frameMs.toInt())
                 if (webp.size <= ANIMATED_MAX_BYTES) {
                     out.writeBytes(webp)
                     return
+                }
+                if (quality == qualities.last()) {
+                    // Usa só os primeiros quadros que cabem no limite
+                    val budget = ANIMATED_MAX_BYTES - 64
+                    var total = 0
+                    val kept = frames.takeWhile { f ->
+                        total += f.size + 48 // cabeçalhos ANMF/ALPH/VP8 do quadro
+                        total <= budget
+                    }
+                    if (kept.size >= 2) {
+                        out.writeBytes(AnimatedWebpWriter.write(kept, SIZE, SIZE, frameMs.toInt()))
+                        onProgress(100)
+                        return
+                    }
                 }
             }
             error("O vídeo ficou grande demais. Tente um vídeo mais curto.")
